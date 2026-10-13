@@ -69,7 +69,7 @@ If activation is restricted, use `.\.venv\Scripts\python.exe` instead of `python
 
 Repository: https://github.com/Usmanovkairat/studyflow
 
-- [Detailed issues](https://github.com/Usmanovkairat/studyflow/issues?q=is%3Aissue) cover bootstrap, courses, tasks, filters, dashboard and CSV.
+- [Six completed issues](https://github.com/Usmanovkairat/studyflow/issues?q=is%3Aissue+is%3Aclosed) cover bootstrap, courses, tasks, filters, dashboard and CSV. Each has checked acceptance criteria, an implementation commit and a QA PASS comment.
 - `chat-brainstorm.md` contains a clearly identified AI decision log and genuine selected conversation excerpts.
 - `AGENTS.md`, `AGENT.md`, `CLAUDE.md`, `process.md`, `_docs/process.md`, `_docs/team/` and `roles/` define the workflow and roles.
 - `_docs/plan.md`, `_docs/architecture.md`, `_docs/task-template.md`, `_docs/issues/`, `_docs/api.md`, `_docs/design-system.md` and `_docs/testing-guidelines.md` provide product-specific context.
@@ -82,4 +82,4 @@ The original publication helper remains available for creating a separate new re
 
 ## QA status
 
-Independent final QA: `python -m pytest -q` passed **99 tests in 0.87s** at `f92ad8d`. All six local specifications passed independent acceptance checks. Chromium 150 verified complete workflows at desktop 1440px and mobile 390px, including CRUD, filters and downloaded CSV. Additional 195 control-prefix checks and 65 actual CSV rows passed. Reports in `_docs/qa/` preserve failures and successful fixes. CI is configured for pushes and pull requests; no remote CI run is claimed. Source is published. Fresh public clone: 99 tests passed in 0.96s; a clean virtual environment install and run passed 99 tests in 0.89s. See `_docs/qa/publication.md` and `_docs/publication.md` for actual remote acceptance state.
+Independent final QA: `python -m pytest -q` passed **99 tests in 0.87s** at `f92ad8d`. All six local specifications passed independent acceptance checks. Chromium 150 verified complete workflows at desktop 1440px and mobile 390px, including CRUD, filters and downloaded CSV. Additional 195 control-prefix checks and 65 actual CSV rows passed. Reports in `_docs/qa/` preserve failures and successful fixes. CI runs on pushes and pull requests. [GitHub Actions Tests run 2](https://github.com/Usmanovkairat/studyflow/actions/runs/38362143761) completed successfully, including dependency installation and pytest. Source is published. Fresh public clone: 99 tests passed in 0.96s; a clean virtual environment install and run passed 99 tests in 0.89s. See `_docs/qa/publication.md` and `_docs/publication.md` for actual remote acceptance state.
