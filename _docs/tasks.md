@@ -4,8 +4,8 @@ Local specification IDs are filenames, not GitHub issue numbers. PM specificatio
 | Local specification | Feature | Dependencies | Local acceptance | Actual GitHub issue |
 |---|---|---|---|---|
 | [01](issues/01.md) | Bootstrap | none | PASS — [QA 01](qa/01.md), fix `cb4c14c`, 6 tests passed | Not created |
-| [02](issues/02.md) | Courses | 01 | Pending | Not created |
-| [03](issues/03.md) | Assignments | 01, 02 | Pending | Not created |
+| [02](issues/02.md) | Courses | 01 | PASS — [QA 02](qa/02.md), fix `af0ca1f`, 18 tests passed | Not created |
+| [03](issues/03.md) | Assignments | 01, 02 | In progress | Not created |
 | [04](issues/04.md) | Search/filters | 03 | Pending | Not created |
 | [05](issues/05.md) | Dashboard | 03 | Pending | Not created |
 | [06](issues/06.md) | CSV/delivery | 01–05 | Pending | Not created |

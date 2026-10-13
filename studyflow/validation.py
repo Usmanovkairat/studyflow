@@ -12,6 +12,7 @@ def validate_course(form):
 
 def validate_task(form, db):
     values = {key: form.get(key, '').strip() for key in ('title', 'course_id', 'due_date', 'notes')}
+    values['notes'] = form.get('notes', '')
     values['priority'] = form.get('priority', 'medium')
     values['status'] = form.get('status', 'todo')
     errors = {}

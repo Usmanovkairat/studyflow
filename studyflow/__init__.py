@@ -46,6 +46,8 @@ def create_app(test_config=None):
 
     from .courses import bp as courses_bp
     app.register_blueprint(courses_bp)
+    from .tasks import bp as tasks_bp
+    app.register_blueprint(tasks_bp)
 
     @app.get('/')
     def dashboard():

@@ -7,3 +7,6 @@
 - Share filter semantics between list and CSV so export matches what the student sees.
 - Preserve the article's `_docs/team` role structure; root aliases cover assignment-specified filenames.
 - Keep honest local/remote distinction. Repository publication and actual issue creation cannot be claimed until verified; deadline is unknown.
+
+## Development decision — Unicode course uniqueness
+Independent course QA found that SQLite's default NOCASE allowed `Математика` and `МАТЕМАТИКА` as separate courses despite the specified case-insensitive uniqueness requirement. Fix `af0ca1f` uses a registered Unicode-aware collation so the database and request checks enforce the same rule. QA report `qa/02.md` verifies Cyrillic, Kazakh and German casefold examples, rename rejection, fresh-connection persistence and direct SQL constraint enforcement; the executed suite had 18 passing tests. This is an implementation/QA decision, not a reconstruction of brainstorming conversation.
