@@ -13,10 +13,39 @@ def find_task(task_id):
         abort(404, description='Assignment not found.')
     return task
 
+def filtered_tasks(args):
+    db = get_db()
+    filters = {key: args.get(key, '').strip() for key in ('q', 'course_id', 'priority', 'status')}
+    clauses, params = [], []
+    if filters['q']:
+        clauses.append('(instr(CASEFOLD(t.title), ?) > 0 OR instr(CASEFOLD(t.notes), ?) > 0)')
+        params.extend([filters['q'].casefold()] * 2)
+    for key, allowed in (('priority', PRIORITIES), ('status', STATUSES)):
+        if filters[key]:
+            if filters[key] not in allowed:
+                abort(400, description='Select a valid ' + key + ' filter.')
+            clauses.append('t.' + key + ' = ?')
+            params.append(filters[key])
+    if filters['course_id']:
+        try:
+            course_id = int(filters['course_id'])
+            if not db.execute('SELECT id FROM courses WHERE id=?', (course_id,)).fetchone():
+                raise ValueError
+        except (ValueError, OverflowError):
+            abort(400, description='Select an existing course for the course filter.')
+        clauses.append('t.course_id = ?')
+        params.append(course_id)
+    sql = 'SELECT t.*, c.name AS course_name FROM tasks t JOIN courses c ON c.id = t.course_id'
+    if clauses:
+        sql += ' WHERE ' + ' AND '.join(clauses)
+    return db.execute(sql + ' ORDER BY t.due_date, t.id', params).fetchall(), filters
+
 @bp.get('')
 def index():
-    tasks = get_db().execute('SELECT t.*, c.name AS course_name FROM tasks t JOIN courses c ON c.id = t.course_id ORDER BY t.due_date, t.id').fetchall()
-    return render_template('tasks/index.html', tasks=tasks, today=date.today().isoformat())
+    tasks, filters = filtered_tasks(request.args)
+    courses = get_db().execute('SELECT * FROM courses ORDER BY name COLLATE NOCASE, id').fetchall()
+    return render_template('tasks/index.html', tasks=tasks, filters=filters, courses=courses,
+                           priorities=PRIORITIES, statuses=STATUSES, today=date.today().isoformat())
 
 @bp.route('/new', methods=['GET', 'POST'])
 def new():

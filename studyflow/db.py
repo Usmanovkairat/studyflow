@@ -29,6 +29,7 @@ def get_db():
             left, right = left.casefold(), right.casefold()
             return (left > right) - (left < right)
         g.db.create_collation('NOCASE', unicode_nocase)
+        g.db.create_function('CASEFOLD', 1, lambda value: value.casefold(), deterministic=True)
         g.db.row_factory = sqlite3.Row
         g.db.execute('PRAGMA foreign_keys = ON')
     return g.db
