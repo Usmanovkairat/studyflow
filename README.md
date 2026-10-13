@@ -19,6 +19,8 @@ Open http://127.0.0.1:5000. Stop the server with Ctrl+C. The database is initial
 
 The app factory accepts `DATABASE` and `SECRET_KEY` configuration overrides for isolated tests. Set `STUDYFLOW_SECRET_KEY` to a strong random secret to override the local development key. Otherwise a persistent secret is generated in ignored `instance/secret.key`. `STUDYFLOW_ENV=production` requires an explicit environment secret. The app is designed for trusted localhost use without accounts.
 
+The dashboard uses the local calendar date of the computer running Flask. Open means todo or in progress; overdue means due before that date and unfinished. Today is never overdue. Upcoming shows the earliest five unfinished assignments due today or later, ordered by date then ID. Dashboard totals always cover every assignment.
+
 ## Verification
 
 ```sh

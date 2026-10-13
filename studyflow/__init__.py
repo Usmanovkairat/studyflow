@@ -1,3 +1,4 @@
+from datetime import date
 import hmac
 import os
 import secrets
@@ -51,7 +52,19 @@ def create_app(test_config=None):
 
     @app.get('/')
     def dashboard():
-        return render_template('dashboard.html')
+        from .db import get_db
+        today_provider = app.config.get('TODAY_PROVIDER', date.today)
+        today = today_provider().isoformat()
+        db = get_db()
+        counts = db.execute('''SELECT COUNT(*) AS total,
+            COALESCE(SUM(status != 'done'),0) AS open,
+            COALESCE(SUM(status = 'done'),0) AS done,
+            COALESCE(SUM(due_date < ? AND status != 'done'),0) AS overdue
+            FROM tasks''', (today,)).fetchone()
+        upcoming = db.execute('''SELECT t.*, c.name AS course_name FROM tasks t
+            JOIN courses c ON c.id=t.course_id WHERE t.status != 'done' AND t.due_date >= ?
+            ORDER BY t.due_date,t.id LIMIT 5''', (today,)).fetchall()
+        return render_template('dashboard.html', counts=counts, upcoming=upcoming, today=today)
 
     @app.errorhandler(400)
     @app.errorhandler(404)
