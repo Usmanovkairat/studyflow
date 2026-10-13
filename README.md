@@ -1,2 +1,5 @@
-# studyflow
-Simple student assignment tracker built with Flask and SQLite. AI-native university project with specifications, tests and QA reports.
+# StudyFlow
+
+Simple local student assignment tracker using Flask and SQLite.
+
+Product specifications and detailed issue payloads are published before the implementation publication commits. The implementation and independent QA were already completed locally; GitHub publication begins now with current real timestamps. See `_docs/plan.md` and `chat-brainstorm.md`.

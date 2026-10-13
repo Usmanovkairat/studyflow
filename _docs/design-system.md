@@ -1,0 +1,4 @@
+# Design system
+StudyFlow uses a clear student workspace: light background, dark text, blue primary actions, restrained borders, cards for dashboard statistics and an accessible task list. Present navigation to Dashboard, Tasks and Courses consistently. Use readable system fonts, generous spacing and a centered content width.
+
+Display priority and status with readable text badges; color supplements labels. Show due dates clearly and label overdue unfinished tasks. Forms have associated visible labels, required markers, inline errors and preserved submitted input on validation failure. Confirmation is required for deleting a course or task. Empty lists explain the state and link to the relevant creation action. Buttons must do real work and have descriptive accessible names. Layout should stack on narrow screens without horizontal page overflow; tables may use bounded scrolling. Provide visible keyboard focus and sufficient text contrast.
