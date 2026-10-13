@@ -1,8 +1,11 @@
 # Chat history and brainstorming — StudyFlow
 
-**Project:** StudyFlow — a simple student assignment tracker  
-**Repository:** https://github.com/Usmanovkairat/studyflow  
-**Date of this conversation:** 13 October 2026  
+**Project:** StudyFlow — a simple student assignment tracker
+
+**Repository:** https://github.com/Usmanovkairat/studyflow
+
+**Date of this conversation:** 13 October 2026
+
 **Methodology:** https://aishippingblog.com/p/ai-native-development-specifications
 
 ## 1. What this record contains
