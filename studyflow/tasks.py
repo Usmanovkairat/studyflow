@@ -1,5 +1,8 @@
+import csv
+import io
+import unicodedata
 from datetime import date
-from flask import Blueprint, abort, flash, redirect, render_template, request, url_for
+from flask import Response, Blueprint, abort, flash, redirect, render_template, request, url_for
 from .db import get_db
 from .validation import PRIORITIES, STATUSES, validate_task
 
@@ -94,3 +97,28 @@ def toggle(task_id):
         db.execute('UPDATE tasks SET status=?,updated_at=CURRENT_TIMESTAMP WHERE id=?', (status, task_id))
     flash('Assignment reopened.' if status == 'todo' else 'Assignment completed.')
     return redirect(url_for('tasks.detail', task_id=task_id))
+
+
+def csv_safe(value):
+    text = str(value)
+    # Inspect the leading whitespace/control prefix without losing controls
+    # through lstrip: spreadsheets can discard these before interpreting cells.
+    index = 0
+    while index < len(text) and text[index].isspace():
+        if unicodedata.category(text[index]) == 'Cc':
+            return "'" + text
+        index += 1
+    effective = text[index:]
+    if effective and (effective[0] in '=+-@' or unicodedata.category(effective[0]) == 'Cc'):
+        return "'" + text
+    return text
+
+@bp.get('/export.csv')
+def export():
+    tasks, _ = filtered_tasks(request.args)
+    output = io.StringIO(newline='')
+    writer = csv.writer(output)
+    writer.writerow(['id', 'title', 'course', 'due_date', 'priority', 'status', 'notes'])
+    for task in tasks:
+        writer.writerow([csv_safe(task[key]) for key in ('id','title','course_name','due_date','priority','status','notes')])
+    return Response(output.getvalue(), mimetype='text/csv', headers={'Content-Disposition': 'attachment; filename="studyflow-assignments.csv"'})

@@ -33,4 +33,57 @@ Tests use temporary databases. All mutation routes must submit the session token
 
 Specifications and process are in `_docs/` and `AGENTS.md`. Local numbered specification files are not real GitHub issue IDs. Remote repository and issue publication are pending; no GitHub issue has been closed by this project.
 
-Current implementation stage: persistent application bootstrap. Course/task screens and dashboard calculations follow in subsequent scoped tasks.
+## Features and workflow
+
+1. Create courses from **Courses → Add course**.
+2. Add assignments with title, course, due date, priority, status and optional notes.
+3. Edit details, mark complete or reopen work. Delete requires expanding a confirmation. Courses with assignments cannot be deleted until their assignments are deleted or moved.
+4. Search title/notes and combine course, priority and status filters. Unicode search is case-insensitive; percent and underscore are literal characters.
+5. See total/open/completed/overdue counts and the next five assignments on Dashboard.
+6. Export current filtered results from Tasks as UTF-8 CSV. Spreadsheet formula-leading cells receive an apostrophe for safety; the original database data remains intact.
+
+Names/titles are trimmed; notes retain formatting. Course names are unique with Unicode casefold comparison. Past due dates are valid. All forms protect writes with CSRF, and validation failures keep useful input.
+
+## Demo
+
+For a fresh empty checkout only, while the server is stopped:
+
+```sh
+python scripts/demo.py
+```
+
+This creates three courses and five assignments relative to today's date. It refuses to add demo records if any course or assignment already exists. Restart Flask and inspect Dashboard, Tasks and Courses. Back up your own database before making any manual changes.
+
+## Windows PowerShell setup
+
+```powershell
+python -m venv .venv
+.\.venv\Scripts\Activate.ps1
+python -m pip install -r requirements.txt
+python -m flask --app studyflow run --host 127.0.0.1 --port 5000
+```
+
+If activation is restricted, use `.\.venv\Scripts\python.exe` instead of `python` in the install/run/test commands. No activation or execution-policy change is necessary.
+
+## Real GitHub publication
+
+Publication is pending. Local development and QA happened before any remote issues were opened; future publication cannot retroactively reproduce remote issue timing. No deadline was provided. Six exact issue payloads are in `_docs/issues/`; actual acceptance evidence is in `_docs/qa/`, with the current status in `_docs/tasks.md`.
+
+Install GitHub CLI (`gh`) and sign in with `gh auth login`. Review the repository contents and issue payloads. Preview the commands without writes (replace OWNER/REPOSITORY with your own):
+
+```sh
+python scripts/publish_github.py OWNER/REPOSITORY --dry-run
+```
+
+To deliberately create a **public** repository, push committed source and open six real issues at the current time:
+
+```sh
+python scripts/publish_github.py OWNER/REPOSITORY --publish
+```
+
+The helper runs tests first, requires no existing origin remote, stops on errors and prints actual issue URLs. It never closes issues. If interrupted after partial publication, inspect GitHub and finish manually; do not rerun repository creation blindly. Record the actual repository URL and issue URLs in the ledger. Review the published commit and corresponding QA evidence, associate it with each actual issue, then close accepted issues manually using GitHub. If the assignment requires issue opening before implementation, explain the actual chronology to your instructor.
+
+## QA status
+
+Engineer execution: `python -m pytest -q` passed **61 tests** for the completed implementation. Independent QA reports record their own commands and results; the final CSV/delivery review and mobile browser check are pending at the time of this implementation commit. CI is configured to run pytest on pushes and pull requests; no remote CI run is claimed.
+
