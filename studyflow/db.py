@@ -23,6 +23,12 @@ CREATE INDEX IF NOT EXISTS idx_tasks_due ON tasks(due_date);
 def get_db():
     if 'db' not in g:
         g.db = sqlite3.connect(current_app.config['DATABASE'])
+        # SQLite's built-in NOCASE only covers ASCII. Register the same
+        # collation for schema uniqueness, ordering and comparisons.
+        def unicode_nocase(left, right):
+            left, right = left.casefold(), right.casefold()
+            return (left > right) - (left < right)
+        g.db.create_collation('NOCASE', unicode_nocase)
         g.db.row_factory = sqlite3.Row
         g.db.execute('PRAGMA foreign_keys = ON')
     return g.db

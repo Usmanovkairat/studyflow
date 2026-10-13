@@ -1,9 +1,9 @@
 # Implementation and publication ledger
-Local specification IDs are filenames, not GitHub issue numbers. PM specifications are ready; implementation and QA require actual evidence before updating status.
+Local specification IDs are filenames, not GitHub issue numbers. PM specifications are ready. Local acceptance is updated only from independently executed QA evidence.
 
 | Local specification | Feature | Dependencies | Local acceptance | Actual GitHub issue |
 |---|---|---|---|---|
-| [01](issues/01.md) | Bootstrap | none | Pending | Not created |
+| [01](issues/01.md) | Bootstrap | none | PASS — [QA 01](qa/01.md), fix `cb4c14c`, 6 tests passed | Not created |
 | [02](issues/02.md) | Courses | 01 | Pending | Not created |
 | [03](issues/03.md) | Assignments | 01, 02 | Pending | Not created |
 | [04](issues/04.md) | Search/filters | 03 | Pending | Not created |

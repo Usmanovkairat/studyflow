@@ -44,12 +44,16 @@ def create_app(test_config=None):
             if not expected or not supplied or not hmac.compare_digest(expected.encode('utf-8'), supplied.encode('utf-8')):
                 abort(400, description='Your form expired or has an invalid security token. Reload the page and try again.')
 
+    from .courses import bp as courses_bp
+    app.register_blueprint(courses_bp)
+
     @app.get('/')
     def dashboard():
         return render_template('dashboard.html')
 
     @app.errorhandler(400)
     @app.errorhandler(404)
+    @app.errorhandler(409)
     def error_page(error):
         return render_template('error.html', error=error), error.code
 
