@@ -1,13 +1,14 @@
 # Implementation and publication ledger
-Local specification IDs are filenames, not GitHub issue numbers. PM specifications are ready. Local acceptance is updated only from independently executed QA evidence.
 
-| Local specification | Feature | Dependencies | Local acceptance | Actual GitHub issue |
-|---|---|---|---|---|
-| [01](issues/01.md) | Bootstrap | none | PASS — [QA 01](qa/01.md), fix `cb4c14c`, 6 tests passed | Not created |
-| [02](issues/02.md) | Courses | 01 | PASS — [QA 02](qa/02.md), fix `af0ca1f`, 18 tests passed | Not created |
-| [03](issues/03.md) | Assignments | 01, 02 | PASS — [QA 03](qa/03.md), `897e327`, 35 tests passed | Not created |
-| [04](issues/04.md) | Search/filters | 03 | PASS — [QA 04](qa/04.md), `eb14ba0`, 45 tests passed | Not created |
-| [05](issues/05.md) | Dashboard | 03 | Functional PASS — [QA 05](qa/05.md), 48 tests; viewport acceptance pending | Not created |
-| [06](issues/06.md) | CSV/delivery | 01–05 | Implemented `0c9d399`; 61 engineer tests, independent QA pending | Not created |
+All six local specifications and the fresh public-clone verification passed independent QA. Actual GitHub states are recorded below; historical local stage counts are preserved in individual reports.
 
-Actual repository publication, issue creation, commit association and issue closure remain pending available GitHub write capability. The assignment deadline is unknown, so issue timestamp compliance is not verified. Update this ledger with actual QA results and remote URLs only after those actions occur.
+| Issue | Feature | Local acceptance | Actual GitHub state |
+|---|---|---|---|
+| [#1](https://github.com/Usmanovkairat/studyflow/issues/1) | Bootstrap persistent local application | PASS — [QA](qa/01.md) | Open, accepted; closure pending evidence publication |
+| [#2](https://github.com/Usmanovkairat/studyflow/issues/2) | Create and manage courses | PASS — [QA](qa/02.md) | Open, accepted; closure pending evidence publication |
+| [#3](https://github.com/Usmanovkairat/studyflow/issues/3) | Manage assignments and completion | PASS — [QA](qa/03.md) | Open, accepted; closure pending evidence publication |
+| [#4](https://github.com/Usmanovkairat/studyflow/issues/4) | Search and combine task filters | PASS — [QA](qa/04.md) | Open, accepted; closure pending evidence publication |
+| [#5](https://github.com/Usmanovkairat/studyflow/issues/5) | Show dashboard and upcoming work | PASS — [QA](qa/05.md) | Open, accepted; closure pending evidence publication |
+| [#6](https://github.com/Usmanovkairat/studyflow/issues/6) | Export filtered CSV and verify delivery | PASS — [QA](qa/06.md) | Open, accepted; closure pending evidence publication |
+
+Final suite: 99 passing tests; clean public clone and clean virtual environment both verified. See [publication](publication.md) for actual commits, timestamps and deadline calculation.

@@ -16,4 +16,18 @@ Persist courses and assignments in SQLite. Build course CRUD with safe restricte
 ## Architecture reasoning
 Two tables model one-to-many courses/tasks. Foreign keys prevent orphaned assignments. Parameterized SQL, validation, escaping and CSRF protect local workflows. Dates use ISO strings and local calendar comparisons. QA will verify actual behavior independently after implementation.
 ## Final handoff
-PM creates methodology documents and six detailed task specifications; software engineer implements in dependency order; QA verifies acceptance and returns defects for correction. GitHub remote actions are pending capability availability; no fake issue or publication history is created.
+PM creates methodology documents and six detailed task specifications; software engineer implements in dependency order; QA verifies acceptance and returns defects for correction. GitHub publication was initially blocked by missing repository creation capability. After the user authorized browser creation and signed in, real repository and issue publication proceeded; `_docs/publication.md` records the actual chronology.
+
+## Selected exact conversation excerpts
+These are selected exact excerpts supplied from the current conversation, not a full transcript. The generated decision record above remains explicitly separate. No question/reply exchange is invented.
+
+**User-provided assignment attachment:**
+> You are authorized to choose the idea and technical stack independently.
+
+> Clearly distinguish actual conversation history from AI-generated reconstruction. Do not invent messages and present them as a real historical conversation.
+
+**Assistant's actual initial project-selection message:**
+> В файле — инструкция выполнить проект целиком. Начинаю работу по ней. Выберу StudyFlow: приложение для студентов с предметами, заданиями, сроками, фильтрами и статистикой, на Python Flask и SQLite.
+
+## Later genuine user instructions
+The user wrote: “сделай это задание полностью в githab и дай мне готовый к сдаче / продвинутый проект не надо”. The user then authorized browser repository creation and stated: “да разрешаю / дедлайн через 1,5-2 часа”. These selected excerpts explain keeping the product simple and using browser creation plus connected GitHub tools for publication.

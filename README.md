@@ -31,7 +31,7 @@ Tests use temporary databases. All mutation routes must submit the session token
 
 ## Development and publication
 
-Specifications and process are in `_docs/` and `AGENTS.md`. Local numbered specification files are not real GitHub issue IDs. Remote repository and issue publication are pending; no GitHub issue has been closed by this project.
+Specifications and process are in `_docs/` and `AGENTS.md`. The public repository is https://github.com/Usmanovkairat/studyflow. Six real GitHub issues cover the complete product; `_docs/tasks.md` records their acceptance and actual publication state.
 
 ## Features and workflow
 
@@ -65,25 +65,21 @@ python -m flask --app studyflow run --host 127.0.0.1 --port 5000
 
 If activation is restricted, use `.\.venv\Scripts\python.exe` instead of `python` in the install/run/test commands. No activation or execution-policy change is necessary.
 
-## Real GitHub publication
+## GitHub project and assignment evidence
 
-Publication is pending. Local development and QA happened before any remote issues were opened; future publication cannot retroactively reproduce remote issue timing. No deadline was provided. Six exact issue payloads are in `_docs/issues/`; actual acceptance evidence is in `_docs/qa/`, with the current status in `_docs/tasks.md`.
+Repository: https://github.com/Usmanovkairat/studyflow
 
-Install GitHub CLI (`gh`) and sign in with `gh auth login`. Review the repository contents and issue payloads. Preview the commands without writes (replace OWNER/REPOSITORY with your own):
+- [Detailed issues](https://github.com/Usmanovkairat/studyflow/issues?q=is%3Aissue) cover bootstrap, courses, tasks, filters, dashboard and CSV.
+- `chat-brainstorm.md` contains a clearly identified AI decision log and genuine selected conversation excerpts.
+- `AGENTS.md`, `AGENT.md`, `CLAUDE.md`, `process.md`, `_docs/process.md`, `_docs/team/` and `roles/` define the workflow and roles.
+- `_docs/plan.md`, `_docs/architecture.md`, `_docs/task-template.md`, `_docs/issues/`, `_docs/api.md`, `_docs/design-system.md` and `_docs/testing-guidelines.md` provide product-specific context.
+- `_docs/qa/` preserves independent QA failures, fixes, final acceptance and fresh public-clone verification.
+- `_docs/publication.md` records real GitHub commits and issue timing. `SUBMISSION.md` is the short submission guide.
 
-```sh
-python scripts/publish_github.py OWNER/REPOSITORY --dry-run
-```
+The product was specified and independently implemented/reviewed locally first. After the user authorized browser creation of a repository, specifications were published, real issues were opened, and the verified implementation was published in six feature commits referencing those issues. These are real current publication events, not a claim that remote issues existed during earlier local development. The embedded video was unavailable; the accessible article and reference repository informed the workflow.
 
-To deliberately create a **public** repository, push committed source and open six real issues at the current time:
-
-```sh
-python scripts/publish_github.py OWNER/REPOSITORY --publish
-```
-
-The helper runs tests first, requires no existing origin remote, stops on errors and prints actual issue URLs. It never closes issues. If interrupted after partial publication, inspect GitHub and finish manually; do not rerun repository creation blindly. Record the actual repository URL and issue URLs in the ledger. Review the published commit and corresponding QA evidence, associate it with each actual issue, then close accepted issues manually using GitHub. If the assignment requires issue opening before implementation, explain the actual chronology to your instructor.
+The original publication helper remains available for creating a separate new repository; do not run it against this already-published repository.
 
 ## QA status
 
-Engineer execution: `python -m pytest -q` passed **61 tests** for the completed implementation. Independent QA reports record their own commands and results; the final CSV/delivery review and mobile browser check are pending at the time of this implementation commit. CI is configured to run pytest on pushes and pull requests; no remote CI run is claimed.
-
+Independent final QA: `python -m pytest -q` passed **99 tests in 0.87s** at `f92ad8d`. All six local specifications passed independent acceptance checks. Chromium 150 verified complete workflows at desktop 1440px and mobile 390px, including CRUD, filters and downloaded CSV. Additional 195 control-prefix checks and 65 actual CSV rows passed. Reports in `_docs/qa/` preserve failures and successful fixes. CI is configured for pushes and pull requests; no remote CI run is claimed. Source is published. Fresh public clone: 99 tests passed in 0.96s; a clean virtual environment install and run passed 99 tests in 0.89s. See `_docs/qa/publication.md` and `_docs/publication.md` for actual remote acceptance state.
